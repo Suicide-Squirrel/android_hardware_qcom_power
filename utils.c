@@ -247,8 +247,6 @@ void interaction(int duration, int num_args, int opt_list[])
     if (qcopt_handle) {
         if (perf_lock_acq) {
             lock_handle = perf_lock_acq(lock_handle, duration, opt_list, num_args);
-            if (lock_handle == -1)
-                ALOGE("Failed to acquire lock.");
         }
     }
 #endif
@@ -287,8 +285,6 @@ int perf_hint_enable(int hint_id , int duration)
     if (qcopt_handle) {
         if (perf_hint) {
             lock_handle = perf_hint(hint_id, NULL, duration, -1);
-            if (lock_handle == -1)
-                ALOGE("Failed to acquire lock.");
         }
     }
     return lock_handle;
@@ -323,7 +319,6 @@ int perform_hint_action(int hint_id, int resource_values[], int num_resources)
                 num_resources);
 
         if (lock_handle == -1) {
-            ALOGE("Failed to acquire lock.");
             return -EINVAL;
         }
 
